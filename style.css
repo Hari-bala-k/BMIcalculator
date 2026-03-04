@@ -1,0 +1,10 @@
+.container{
+    width: 30%;
+    padding:10% ;
+    height: 20%;
+    color: violet;
+    border: 20%;
+    border-color: black;
+    border-radius: 20px;
+    background-color: beige;
+}
