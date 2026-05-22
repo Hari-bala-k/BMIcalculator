@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMI Calculator</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:'Poppins',sans-serif;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.65)),
+      url("Image/backgroundBMI.jpg");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    .card{
+      width:400px;
+      padding:40px 35px;
+
+      background:rgba(10,25,18,0.72);
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:24px;
+
+      backdrop-filter:blur(10px);
+
+      box-shadow:
+      0 8px 35px rgba(0,0,0,0.45);
+
+      text-align:center;
+    }
+
+    .card h1{
+      color:#ffffff;
+      font-size:2.3rem;
+      margin-bottom:8px;
+      font-weight:700;
+    }
+
+    .card p{
+      color:#b7d6c1;
+      margin-bottom:28px;
+      font-size:0.95rem;
+    }
+
+    .input-box{
+      margin-bottom:20px;
+      text-align:left;
+    }
+
+    .input-box label{
+      display:block;
+      margin-bottom:8px;
+      color:#d7f5df;
+      font-size:0.95rem;
+      font-weight:500;
+    }
+
+    .input-box input{
+      width:100%;
+      padding:14px 16px;
+
+      border:none;
+      outline:none;
+
+      border-radius:14px;
+
+      background:rgba(255,255,255,0.08);
+
+      color:white;
+      font-size:1rem;
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      transition:0.3s;
+    }
+
+    .input-box input:focus{
+      border:1px solid #22c55e;
+      box-shadow:0 0 12px rgba(34,197,94,0.35);
+    }
+
+    .input-box input::placeholder{
+      color:#b6cdbd;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+
+      border:none;
+      border-radius:14px;
+
+      background:linear-gradient(135deg,#22c55e,#166534);
+
+      color:white;
+      font-size:1rem;
+      font-weight:600;
+
+      cursor:pointer;
+
+      transition:0.3s;
+      margin-top:10px;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(34,197,94,0.35);
+    }
+
+    #show{
+  margin-top:25px;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  background:linear-gradient(
+  135deg,
+  rgba(34,197,94,0.15),
+  rgba(22,101,52,0.25));
+
+  border:1px solid rgba(34,197,94,0.25);
+
+  color:#ecfdf5;
+
+  min-height:80px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  line-height:1.7;
+
+  font-size:1.05rem;
+  font-weight:500;
+
+  backdrop-filter:blur(8px);
+
+  box-shadow:
+  0 4px 20px rgba(34,197,94,0.12),
+  inset 0 1px 1px rgba(255,255,255,0.08);
+
+  transition:0.3s ease;
+}
+#show h2{
+  font-size:2.2rem;
+  color:#4ade80;
+  margin:4px 0;
+}
+
+#show p{
+  font-size:0.95rem;
+  color:#d1fae5;
+}
+
+#show span{
+  font-size:1rem;
+  font-weight:500;
+  color:#ffffff;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>BMI Calculator</h1>
+    <p>Calculate your body mass index instantly</p>
+
+    <div class="input-box">
+      <label>Height (cm)</label>
+      <input type="number" id="height" placeholder="Enter your height">
+    </div>
+
+    <div class="input-box">
+      <label>Weight (kg)</label>
+      <input type="number" id="weight" placeholder="Enter your weight">
+    </div>
+
+    <button onclick="result()">Calculate BMI</button>
+
+    <div id="show">
+      Your BMI result will appear here
+    </div>
+
+  </div>
+
+  <script>
+
+    function result(){
+
+      let height = document.getElementById("height").value;
+      let weight = document.getElementById("weight").value;
+
+      if(height === "" || weight === ""){
+        document.getElementById("show").innerHTML =
+        "Please enter height and weight";
+        return;
+      }
+
+      let bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+
+      let status = "";
+
+      if(bmi < 18.5){
+        status = "Underweight";
+      }
+      else if(bmi < 25){
+        status = "Normal Weight";
+      }
+      else if(bmi < 30){
+        status = "Overweight";
+      }
+      else{
+        status = "Obese";
+      }
+
+      document.getElementById("show").innerHTML = `
+  <div>
+    <p>Your BMI is</p>
+    <h2>${bmi}</h2>
+    <span>You are ${status}</span>
+  </div>
+`;
+    }
+
+  </script>
+
+</body>
+</html>
